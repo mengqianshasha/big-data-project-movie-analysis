@@ -99,3 +99,16 @@ LOCATION '/hive_data'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
 LOAD DATA INPATH '/hive_data/name.basics.tsv' INTO TABLE names;
+
+
+-- load data from title.country -> countries
+CREATE TABLE IF NOT EXISTS countries (
+  titleId STRING,
+  country ARRAY<STRING>
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+COLLECTION ITEMS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+LOCATION '/hive_data';
+
+LOAD DATA INPATH '/hive_data/title.country.tsv' INTO TABLE countries;
