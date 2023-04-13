@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS akas (
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t'
-LOCATION '/hive_data'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
 LOAD DATA INPATH '/hive_data/title.akas.tsv' INTO TABLE akas;
@@ -47,7 +46,6 @@ CREATE TABLE IF NOT EXISTS basics (
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 COLLECTION ITEMS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-LOCATION '/hive_data'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
 LOAD DATA INPATH '/hive_data/title.basics.tsv' INTO TABLE basics;
@@ -62,7 +60,6 @@ CREATE TABLE IF NOT EXISTS ratings (
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'
-LOCATION '/hive_data'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
 LOAD DATA INPATH '/hive_data/title.ratings.tsv' INTO TABLE ratings;
@@ -77,7 +74,6 @@ CREATE TABLE IF NOT EXISTS crew (
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 COLLECTION ITEMS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-LOCATION '/hive_data'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
 LOAD DATA INPATH '/hive_data/title.crew.tsv' INTO TABLE crew;
@@ -95,7 +91,6 @@ CREATE TABLE IF NOT EXISTS names (
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 COLLECTION ITEMS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-LOCATION '/hive_data'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
 LOAD DATA INPATH '/hive_data/name.basics.tsv' INTO TABLE names;
@@ -108,7 +103,6 @@ CREATE TABLE IF NOT EXISTS countries (
 )
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 COLLECTION ITEMS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-LOCATION '/hive_data';
+LINES TERMINATED BY '\n';
 
 LOAD DATA INPATH '/hive_data/title.country.tsv' INTO TABLE countries;
