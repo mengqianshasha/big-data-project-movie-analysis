@@ -14,22 +14,6 @@
 CREATE DATABASE IF NOT EXISTS movie;
 USE movie;
 
--- load data from title.akas --> akas
-CREATE TABLE IF NOT EXISTS akas (
-  titleId STRING,
-  ordering INT,
-  title STRING,
-  region STRING,
-  language STRING,
-  types STRING,
-  attributes STRING,
-  isOriginalTitle INT
-)
-ROW FORMAT DELIMITED
-FIELDS TERMINATED BY '\t'
-TBLPROPERTIES ('skip.header.line.count'='1');
-
-LOAD DATA INPATH '/hive_data/title.akas.tsv' INTO TABLE akas;
 
 -- load data from title.basics --> basics
 CREATE TABLE IF NOT EXISTS basics (
@@ -48,7 +32,7 @@ COLLECTION ITEMS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
-LOAD DATA INPATH '/hive_data/title.basics.tsv' INTO TABLE basics;
+LOAD DATA INPATH '/hive_data/title.basics.tsv' OVERWRITE INTO TABLE basics;
 
 
 -- load data from title.ratings --> ratings
@@ -62,7 +46,7 @@ FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
-LOAD DATA INPATH '/hive_data/title.ratings.tsv' INTO TABLE ratings;
+LOAD DATA INPATH '/hive_data/title.ratings.tsv' OVERWRITE INTO TABLE ratings;
 
 
 -- load data from title.crew --> crew
@@ -76,7 +60,7 @@ COLLECTION ITEMS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
-LOAD DATA INPATH '/hive_data/title.crew.tsv' INTO TABLE crew;
+LOAD DATA INPATH '/hive_data/title.crew.tsv' OVERWRITE INTO TABLE crew;
 
 
 -- load data from name.basics -> names
@@ -93,7 +77,7 @@ COLLECTION ITEMS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 TBLPROPERTIES ('skip.header.line.count'='1');
 
-LOAD DATA INPATH '/hive_data/name.basics.tsv' INTO TABLE names;
+LOAD DATA INPATH '/hive_data/name.basics.tsv' OVERWRITE INTO TABLE names;
 
 
 -- load data from title.country -> countries
@@ -105,4 +89,4 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 COLLECTION ITEMS TERMINATED BY ','
 LINES TERMINATED BY '\n';
 
-LOAD DATA INPATH '/hive_data/title.country.tsv' INTO TABLE countries;
+LOAD DATA INPATH '/hive_data/title.country.tsv' OVERWRITE INTO TABLE countries;

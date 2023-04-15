@@ -46,6 +46,7 @@ WHERE
 	AND b.titleId IS NOT NULL
     AND b.startYear IS NOT NULL 
     AND b.genres IS NOT NULL
+    AND c.country IS NOT NULL
     AND r.rating IS NOT NULL 
     AND r.numVotes IS NOT NULL
 ),
