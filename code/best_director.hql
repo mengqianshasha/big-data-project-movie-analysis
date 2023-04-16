@@ -28,92 +28,87 @@
 
 USE movie;
 
-CREATE TABLE best_director AS (
+CREATE TABLE IF NOT EXISTS best_director (
     country STRING,
     genre STRING,
     director_name STRING,
     weighted_rating DOUBLE
-)
+);
 
 CREATE VIEW best_director_tmp AS
-WITH exploded_countries AS (
+WITH all_info AS (
     SELECT
-        titleId,
-        single_country
-    FROM
-        countries
-        LATERAL VIEW EXPLODE(country) country_ AS single_country
-),
-exploded_crew AS (
-    SELECT
-        titleId,
-        single_director
-    FROM
-        crew
-        LATERAL VIEW EXPLODE(directors) directors_ AS single_director
-),
-exploded_basics AS (
-    SELECT
-        titleId,
-        single_genre
-    FROM
-        basics
-        LATERAL VIEW EXPLODE(genres) genres_ AS single_genre
-),
-all_info AS (
-    SELECT
-        c.single_country AS country,
-        b.single_genre AS genre,
-        cr.single_director AS director,
-        n.primaryName AS director_name,
+        c.country AS countries,
+        b.genres AS genres,
+        cr.directors AS directors,
         b.titleId AS title_id,
         r.rating AS rating,
         r.numVotes AS numvotes
     FROM
-        exploded_basics b
-        JOIN exploded_countries c ON b.titleId = c.titleId
-        JOIN exploded_crew cr ON b.titleId = cr.titleId
+        basics b
+        JOIN countries c ON b.titleId = c.titleId
+        JOIN crew cr ON b.titleId = cr.titleId
         JOIN ratings r ON b.titleId = r.titleId
-        JOIN names n ON cr.single_director = n.nameId
+    WHERE
+        b.titleType = 'movie' AND 
+        b.startYear >= 2010 AND
+        b.titleId IS NOT NULL AND
+        b.startYear IS NOT NULL AND
+        b.genres IS NOT NULL AND
+        c.titleId IS NOT NULL AND
+        c.country IS NOT NULL AND
+        r.titleId IS NOT NULL AND
+        r.rating IS NOT NULL AND
+        r.numVotes IS NOT NULL AND
+        cr.titleId IS NOT NULL AND
+        size(cr.directors) > 0
+),
+exploded_all_info AS (
+    SELECT
+        countries_.country AS country,
+        genres_.genre AS genre,
+        directorts_.director AS director,
+        title_id,
+        rating,
+        numvotes
+    from all_info
+        LATERAL VIEW EXPLODE(countries) countries_ AS country
+        LATERAL VIEW EXPLODE(genres) genres_ AS genre
+        LATERAL VIEW EXPLODE(directors) directorts_ AS director
+    where
+        genres_.genre != "movie"
 ),
 weighted_rating_agg AS (
     SELECT
         country,
         genre,
         director,
-        director_name,
         SUM(rating * numvotes) / SUM(numvotes) AS weighted_rating
     FROM
-        all_info
+        exploded_all_info
     GROUP BY
         country,
         genre,
-        director,
-        director_name
+        director
 ),
 director_rank AS (
     SELECT
         country,
         genre,
-        director_name,
+        director,
         weighted_rating,
         RANK() OVER (PARTITION BY country, genre ORDER BY weighted_rating DESC) AS rank
     FROM
         weighted_rating_agg
 )
-
-SELECT
-    country,
-    genre,
-    director_name,
-    weighted_rating
-FROM
-    director_rank
-WHERE
-    rank = 1
-ORDER BY
-    country,
-    genre;
+select
+    d.country as country,
+    d.genre as genre,
+    n.primaryName as director_name,
+    weighted_rating as rating
+from director_rank d join names n on d.director = n.nameId
+where rank = 1
+order by country, genre;
 
 
 INSERT OVERWRITE TABLE best_director
