@@ -26,10 +26,16 @@
 
  */
 
-
-
 USE movie;
 
+CREATE TABLE best_director AS (
+    country STRING,
+    genre STRING,
+    director_name STRING,
+    weighted_rating DOUBLE
+)
+
+CREATE VIEW best_director_tmp AS
 WITH exploded_countries AS (
     SELECT
         titleId,
@@ -108,3 +114,9 @@ WHERE
 ORDER BY
     country,
     genre;
+
+
+INSERT OVERWRITE TABLE best_director
+SELECT * FROM best_director_tmp;
+
+DROP VIEW best_director_tmp;
