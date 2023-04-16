@@ -83,7 +83,7 @@ weighted_rating_agg AS (
         country,
         genre,
         director,
-        SUM(rating * numvotes) / SUM(numvotes) AS weighted_rating
+        ROUND(SUM(rating * numvotes) / SUM(numvotes), 1) AS weighted_rating
     FROM
         exploded_all_info
     GROUP BY
@@ -115,3 +115,4 @@ INSERT OVERWRITE TABLE best_director
 SELECT * FROM best_director_tmp;
 
 DROP VIEW best_director_tmp;
+
