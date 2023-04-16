@@ -7,21 +7,23 @@
   +-----------------------------------+--------------+------------------------------+---------------------+
   |             country               |    genre     |        director_name         |   weighted_rating   |
   +-----------------------------------+--------------+------------------------------+---------------------+
-  | United Kingdom                    | Reality-TV   | Josh Schultz                 | 5.700000000000001   |
-  | United Kingdom                    | Reality-TV   | Dane Keil                    | 5.700000000000001   |
-  | United Kingdom                    | Romance      | Olivier Adam                 | 9.2                 |
-  | United Kingdom                    | Sci-Fi       | Sandra Daroy                 | 8.5                 |
-  | United Kingdom                    | Sport        | Jack Turner                  | 10.0                |
-  | United Kingdom                    | Thriller     | Simon Ellis                  | 9.2                 |
-  | United Kingdom                    | War          | Pradeep Shahi                | 9.3                 |
-  | United Kingdom                    | Western      | Luke J. Hagan                | 7.700000000000001   |
-  | United States                     | Action       | Lance Larson                 | 9.8                 |
-  | United States                     | Adult        | Huggy Bear                   | 9.1                 |
-  | United States                     | Adventure    | Joel Newton                  | 9.7                 |
-  | United States                     | Animation    | Christopher DeMaci           | 9.5                 |
-  | United States                     | Biography    | Vasovic Danko                | 9.8                 |
-  | United States                     | Comedy       | Scott Peters                 | 9.9                 |
-  | United States                     | Crime        | E.C Illa                     | 10.0                |
+  | China                             | Action       | Shuanbao Wang                | 9.4                 |
+  | China                             | Adventure    | Chun-Hsien Wu                | 9.1                 |
+  | China                             | Animation    | Pin Pin Tan                  | 9.4                 |
+  | China                             | Biography    | Shiwei Kang                  | 9.8                 |
+  | China                             | Comedy       | Peter Farrelly               | 8.2                 |
+  | China                             | Comedy       | Gil Kofman                   | 8.2                 |
+  | China                             | Comedy       | Tanner King Barklow          | 8.2                 |
+  | China                             | Crime        | Xu Jiang Hua                 | 8.6                 |
+  | China                             | Documentary  | Shiwei Kang                  | 9.8                 |
+  | China                             | Drama        | Shiwei Kang                  | 9.8                 |
+  | China                             | Family       | Alex Davidson                | 9.7                 |
+  | China                             | Fantasy      | Xu Jiang Hua                 | 8.6                 |
+  | China                             | History      | Tiemu Jin                    | 9.6                 |
+  | China                             | Horror       | Eric Heise                   | 8.2                 |
+  | China                             | Music        | Han Niu                      | 8.6                 |
+  | China                             | Musical      | Hao Wu                       | 7.3                 |
+  | China                             | Musical      | Michael McFadden             | 7.3                 |
   +-----------------------------------+--------------+------------------------------+---------------------+
 
  */
