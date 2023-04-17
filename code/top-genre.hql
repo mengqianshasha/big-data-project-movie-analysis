@@ -89,7 +89,6 @@ SELECT
     weightedAveRating,
     ranking
 FROM ranked_scores
-WHERE ranking<=3
 ORDER BY
     country,
     weightedAveRating DESC;
@@ -100,3 +99,4 @@ SELECT * FROM top_genre_temp;
 DROP VIEW top_genre_temp;
 
 
+-- WHERE ranking<=3
