@@ -97,6 +97,3 @@ INSERT OVERWRITE TABLE top_genre
 SELECT * FROM top_genre_temp;
 
 DROP VIEW top_genre_temp;
-
-
--- WHERE ranking<=3
