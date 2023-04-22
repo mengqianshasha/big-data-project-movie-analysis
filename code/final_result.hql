@@ -1,3 +1,5 @@
+USE movie;
+
 -- This Hive SQL script combines the results of the top_genre and best_director tables
 -- and stores the merged data in a new table called 'best_director_for_genres'.
 -- This new table displays the top 3 genres for each country along with their corresponding best directors.
